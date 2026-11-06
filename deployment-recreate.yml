@@ -1,10 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
-  name: cars-deployment
+  name: shopping-deployment
   namespace: cars
   labels:
-    app: cars
+    app: shopping
+    version: recreate
 
 spec:
   replicas: 3
@@ -14,25 +16,24 @@ spec:
 
   selector:
     matchLabels:
-      app: cars
+      app: shopping
       version: recreate
 
   template:
     metadata:
       labels:
-        app: cars
+        app: shopping
         version: recreate
-      annotations:
-        deployment-version: "2"
 
     spec:
       containers:
-        - name: cars-container
-          image: satishpolaka/cars:v1
+        - name: shopping-container
+          image: satishpolaka/shopping:v1
           imagePullPolicy: IfNotPresent
 
           ports:
-            - containerPort: 80
+            - name: http
+              containerPort: 80
 
           envFrom:
             - configMapRef:
@@ -42,6 +43,7 @@ spec:
             requests:
               cpu: "100m"
               memory: "128Mi"
+
             limits:
               cpu: "500m"
               memory: "256Mi"
