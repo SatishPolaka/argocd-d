@@ -8,8 +8,8 @@ spec:
   type: LoadBalancer
 
   selector:
-    app: cars
-    version: blue
+    app: shopping
+    version: green
 
   ports:
     - name: http
