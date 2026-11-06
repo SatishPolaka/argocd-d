@@ -7,7 +7,7 @@ metadata:
     app: cars
 
 spec:
-  replicas: 3
+  replicas: 4
 
   selector:
     matchLabels:
@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: cars-container
-          image: satishpolaka/cars:v1
+          image: satishpolaka/shopping:v1
           imagePullPolicy: IfNotPresent
 
           ports:
