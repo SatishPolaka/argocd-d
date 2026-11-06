@@ -10,7 +10,7 @@ spec:
     kind: Deployment
     name: cars-deployment
 
-  minReplicas: 3
+  minReplicas: 4
   maxReplicas: 10
 
   metrics:
