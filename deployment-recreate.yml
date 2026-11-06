@@ -1,1 +1,47 @@
-cd 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cars-deployment
+  namespace: cars
+  labels:
+    app: cars
+
+spec:
+  replicas: 3
+
+  strategy:
+    type: Recreate
+
+  selector:
+    matchLabels:
+      app: cars
+      version: recreate
+
+  template:
+    metadata:
+      labels:
+        app: cars
+        version: recreate
+      annotations:
+        deployment-version: "2"
+
+    spec:
+      containers:
+        - name: cars-container
+          image: satishpolaka/cars:v1
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 80
+
+          envFrom:
+            - configMapRef:
+                name: cars-config
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
