@@ -183,34 +183,6 @@ The active manifest set for the final Recreate exercise can be organised as:
 
 Keep old manifests as backups only if they are not included in the Argo CD source path as active Kubernetes manifests. For example, use a separate `backup/` directory or file extensions such as `.bak`. Confirm Argo CD is not rendering those backup files.
 
-## Argo CD screenshots
-
-Add your **real screenshots from your own Argo CD UI** to the `screenshots/` directory. Do not use illustrative diagrams as proof of a successful deployment.
-
-Suggested screenshots:
-
-| Filename | Capture when | What it should show |
-|---|---|---|
-| `01-argocd-rolling-update.png` | Rolling Update is complete | Argo CD app resource tree and the updated Deployment/Pods |
-| `02-argocd-blue-green-both.png` | Both environments are deployed | Blue and Green Deployments and their Pods |
-| `03-argocd-blue-active.png` | Service selects Blue | Service selector or endpoint details showing Blue |
-| `04-argocd-green-active.png` | Service selects Green | Service selector or endpoint details showing Green |
-| `05-argocd-rollback-blue.png` | Rollback is complete | Service again selects Blue |
-| `06-argocd-recreate-shopping.png` | Recreate is complete | Recreate Deployment and replacement Shopping Pods |
-
-When capturing screenshots:
-- Show the Argo CD Application name and Sync/Health status where possible.
-- Expand the relevant resource tree.
-- Open the Service details for traffic-switch screenshots.
-- Open Deployment details to show the image and strategy.
-- Avoid including credentials, tokens, private keys, or other sensitive information.
-
-If a screenshot is not yet captured, leave the corresponding image out until you have a genuine screenshot. Example Markdown for adding it later:
-
-```markdown
-![Blue and Green deployments in Argo CD](screenshots/02-argocd-blue-green-both.png)
-```
-
 ## Production considerations
 
 The project demonstrates core concepts, but a production implementation should additionally consider:
