@@ -9,9 +9,10 @@ spec:
 
   selector:
     app: cars
+    version: blue
 
   ports:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: http
+      targetPort: 80
