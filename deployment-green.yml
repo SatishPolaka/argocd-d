@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-green
+  namespace: cars
+  labels:
+    app: shopping
+    version: green
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: shopping
+      version: green
+
+  template:
+    metadata:
+      labels:
+        app: shopping
+        version: green
+
+    spec:
+      containers:
+        - name: shopping-container
+          image: satishpolaka/shopping:v1
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 80
+
+          envFrom:
+            - configMapRef:
+                name: cars-config
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
