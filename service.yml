@@ -9,7 +9,7 @@ spec:
 
   selector:
     app: cars
-    version: blue
+    version: recreate
 
   ports:
     - name: http
