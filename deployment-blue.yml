@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cars-blue
+  namespace: cars
+  labels:
+    app: cars
+    version: blue
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: cars
+      version: blue
+
+  template:
+    metadata:
+      labels:
+        app: cars
+        version: blue
+
+    spec:
+      containers:
+        - name: cars-container
+          image: satishpolaka/cars:v1
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 80
+
+          envFrom:
+            - configMapRef:
+                name: cars-config
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
